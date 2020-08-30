@@ -15,5 +15,11 @@ elif [[ "$#" -ge 1 ]]; then
 	VHASH_MODE="$1"
 fi
 
-cmake . -DVHASH_MODE="$VHASH_MODE" && make -j12
+if [[ "$#" -ge 2 && "$2" == "debug" ]]; then
+	NO_STRIP="true"
+else
+	NO_STRIP="false"
+fi
+
+cmake . -DVHASH_MODE="$VHASH_MODE" -DNO_STRIP="$NO_STRIP" && make -j12
 sha256sum build/bin/output_exec
