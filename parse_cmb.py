@@ -35,7 +35,7 @@ def process_dir(root, target_filename, processed_dirs, bound_dirs, bound_files):
 
 	for file in files:
 		#TODO have a more generic check for source files
-		if file.endswith(".cpp"):
+		if file.endswith(".cpp") or file.endswith(".c"):
 			if is_binding_dir:
 				bound_files[root].append(file)
 			else:
